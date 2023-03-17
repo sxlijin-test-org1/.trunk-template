@@ -2,7 +2,7 @@ name: trunk
 on:
   workflow_dispatch:
     inputs:
-      check_repository:
+      client_payload:
         required: true
 
 jobs:
@@ -13,3 +13,5 @@ jobs:
     steps:
       - name: Trunk Check
         uses: trunk-io/trunk-action/check-service@check-dot-trunk
+        with:
+          client_payload: ${{ inputs.client_payload }}
