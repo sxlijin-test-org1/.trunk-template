@@ -12,6 +12,6 @@ jobs:
   
     steps:
       - name: Trunk Check
-        uses: trunk-io/trunk-action/check-service@check-dot-trunk
+        uses: trunk-io/trunk-action/check-service@sam/check-dot-trunk
         with:
           client_payload: ${{ inputs.client_payload }}
