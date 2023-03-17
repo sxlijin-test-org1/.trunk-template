@@ -8,10 +8,4 @@ on:
 jobs:
   check:
     name: Trunk Check
-    runs-on: ubuntu-latest
-  
-    steps:
-      - name: Trunk Check
-        uses: trunk-io/trunk-action/check-service@sam/check-dot-trunk
-        with:
-          client_payload: ${{ inputs.client_payload }}
+    uses: trunk-io/trunk-action/.github/workflows/check-service.reusable.yaml@sam/check-dot-trunk
