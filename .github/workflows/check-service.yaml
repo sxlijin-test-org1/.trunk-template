@@ -5,9 +5,47 @@ on:
       client_payload:
         required: true
 
+###############################################################################
+#
+# Client payload should be a JSON string that follows the following schema:
+#
+# {
+#   "version": "0.0.0",
+#   "target": {
+#     "name": [[ repo that we received a webhook for ]],
+#     "ref": [[ ref that we received a webhook for ]],
+#   },
+#   "check_mode": "pull_request",
+#   "cache": true,
+#   "token": [[ the trunk api token for the repo ]],
+#   "upload_series": "",
+# }
+#
+###############################################################################
+
 jobs:
   check:
     name: Trunk Check
-    uses: trunk-io/trunk-action/.github/workflows/check-service.reusable.yaml@sam/check-dot-trunk
-    with:
-      client_payload: ${{ inputs.client_payload }}
+    runs-on: ubuntu-latest
+    if: fromJSON(inputs.client_payload).version == '0.0.0'
+
+    steps:
+      - name: Test fromjson resolution
+        shell: bash
+        run: |
+          echo '${{ fromJSON(inputs.client_payload).unset_field || "fallback field" }}'
+
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          repository: ${{ fromJSON(inputs.client_payload).target.name }}
+          ref: ${{ fromJSON(inputs.client_payload).target.ref }}
+
+      - name: Trunk Check
+        uses: trunk-io/trunk-action@sam/check-dot-trunk
+        with:
+          check-mode: ${{ fromJSON(inputs.client_payload).check_mode }}
+          cache: ${{ fromJSON(inputs.client_payload).cache }}
+          trunk-token: ${{ fromJSON(inputs.client_payload).token }}
+          upload-series: ${{ fromJSON(inputs.client_payload.upload_series }}
+
