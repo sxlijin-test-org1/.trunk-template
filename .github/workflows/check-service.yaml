@@ -1,0 +1,15 @@
+name: trunk
+on:
+  workflow_dispatch:
+    inputs:
+      check_repository:
+        required: true
+
+jobs:
+  check:
+    name: Trunk Check
+    runs-on: ubuntu-latest
+  
+    steps:
+      - name: Trunk Check
+        uses: trunk-io/trunk-action/check-service@check-dot-trunk
