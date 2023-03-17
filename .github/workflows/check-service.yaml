@@ -33,7 +33,7 @@ jobs:
       - name: Test fromjson resolution
         shell: bash
         run: |
-          echo '${{ fromJSON(inputs.client_payload).unset_field || "fallback field" }}'
+          echo "${{ fromJSON(inputs.client_payload).unset_field || 'fallback fiel' }}"
 
       - name: Checkout
         uses: actions/checkout@v3
@@ -47,5 +47,4 @@ jobs:
           check-mode: ${{ fromJSON(inputs.client_payload).check_mode }}
           cache: ${{ fromJSON(inputs.client_payload).cache }}
           trunk-token: ${{ fromJSON(inputs.client_payload).token }}
-          upload-series: ${{ fromJSON(inputs.client_payload.upload_series }}
-
+          upload-series: ${{ fromJSON(inputs.client_payload).upload_series }}
