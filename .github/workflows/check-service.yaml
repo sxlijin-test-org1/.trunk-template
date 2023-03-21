@@ -1,4 +1,4 @@
-name: trunk
+name: Trunk Check (service)
 on:
   workflow_dispatch:
     inputs:
