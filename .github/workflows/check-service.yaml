@@ -53,16 +53,6 @@ jobs:
           GITHUB_FOO: ${{ env.GITHUB_FOO || 'qwerty' }}
           GITHUB_BAR: ${{ env.GITHUB_BAR || 'qwerty' }}
 
-      - name: envvar setup
-        shell: bash
-        run: |
-          echo "GITHUB_EVENT_PULL_REQUEST_BASE_SHA='${{ fromJSON(inputs.client_payload).pull_request.base.sha }}'" >>"${GITHUB_ENV}"
-          echo "GITHUB_EVENT_PULL_REQUEST_HEAD_REPO_FORK='${{ fromJSON(inputs.client_payload).pull_request.head.repo.fork }}'" >>"${GITHUB_ENV}"
-          echo "GITHUB_EVENT_PULL_REQUEST_HEAD_SHA='${{ fromJSON(inputs.client_payload).pull_request.head.sha }}'" >>"${GITHUB_ENV}"
-          echo "GITHUB_EVENT_PULL_REQUEST_NUMBER='${{ fromJSON(inputs.client_payload).pull_request.number }}'" >>"${GITHUB_ENV}"
-          echo "GITHUB_REF_NAME='${{ fromJSON(inputs.client_payload).target.ref_name }}'" >>"${GITHUB_ENV}"
-          echo "GITHUB_REPOSITORY='${{ fromJSON(inputs.client_payload).target.name }}'" >>"${GITHUB_ENV}"
-
       - name: Trunk Check
         uses: trunk-io/trunk-action@v1
         with:
@@ -71,3 +61,10 @@ jobs:
           cache: ${{ fromJSON(inputs.client_payload).cache }}
           trunk-token: ${{ fromJSON(inputs.client_payload).token }}
           upload-series: ${{ fromJSON(inputs.client_payload).upload_series }}
+        env:
+          GITHUB_EVENT_PULL_REQUEST_BASE_SHA: ${{ fromJSON(inputs.client_payload).pull_request.base.sha }}
+          GITHUB_EVENT_PULL_REQUEST_HEAD_REPO_FORK: ${{ fromJSON(inputs.client_payload).pull_request.head.repo.fork }}
+          GITHUB_EVENT_PULL_REQUEST_HEAD_SHA: ${{ fromJSON(inputs.client_payload).pull_request.head.sha }}
+          GITHUB_EVENT_PULL_REQUEST_NUMBER: ${{ fromJSON(inputs.client_payload).pull_request.number }}
+          GITHUB_REF_NAME: ${{ fromJSON(inputs.client_payload).target.ref_name }}
+          GITHUB_REPOSITORY: ${{ fromJSON(inputs.client_payload).target.name }}
