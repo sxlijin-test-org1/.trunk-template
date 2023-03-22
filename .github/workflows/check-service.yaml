@@ -55,7 +55,7 @@ jobs:
           GITHUB_BAR: ${{ env.GITHUB_BAR || 'qwerty' }}
 
       - name: Trunk Check
-        uses: trunk-io/trunk-action@v1
+        uses: trunk-io/trunk-action@sam/check-dot-trunk
         with:
           arguments: ${{ fromJSON(inputs.client_payload).arguments }}
           check-mode: ${{ fromJSON(inputs.client_payload).check_mode }}
