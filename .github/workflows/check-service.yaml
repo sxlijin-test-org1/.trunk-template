@@ -16,7 +16,7 @@ on:
 #     "ref_name":  [[ ref that we received a webhook for ]],
 #     "ref_sha": [[ ref that we received a webhook for ]],
 #   },
-#   "arguments": "--trunk-annotate",
+#   "arguments": "--trunk-annotate 0",
 #   "check_mode": "pull_request",
 #   "cache": true,
 #   "token": [[ the trunk api token for the repo ]],
@@ -39,6 +39,19 @@ jobs:
         with:
           repository: ${{ fromJSON(inputs.client_payload).target.name }}
           ref: ${{ fromJSON(inputs.client_payload).target.ref_sha }}
+
+      - name: test setup
+        shell: bash
+        run: |
+          echo "GITHUB_FOO=asdf" >> $GITHUB_ENV
+
+      - name: test impl
+        shell: bash
+        run: |
+          env
+        env:
+          GITHUB_FOO: ${{ env.GITHUB_FOO || 'qwerty' }}
+          GITHUB_BAR: ${{ env.GITHUB_BAR || 'qwerty' }}
 
       - name: Trunk Check
         uses: trunk-io/trunk-action@v1

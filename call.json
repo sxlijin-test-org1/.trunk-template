@@ -1,24 +1,24 @@
 {
   "version": "0.0.0",
-  "arguments": "--trunk-annotate",
+  "arguments": "--trunk-annotate 0",
   "check_mode": "pull_request",
   "cache": true,
-  "token": "placeholder-trunk-api-token-for-repo",
+  "token": "58e3b7b64b09c95bf5af1d1f73a2a195c9448e30",
   "target": {
     "name": "prawn-test-staging-rw/sass",
-    "ref_name": "sam/test-pr",
-    "ref_sha": "48515518d711aeef0f62f07b6dc86a80a6aad9f2"
+    "ref_name": "sam/test-pr-2",
+    "ref_sha": "ea7f91a4b7ba146df5a334d74923298518f1af93"
   },
   "pull_request": {
     "base": {
-      "sha": "dd39e9a0122bf0a60a2717a89c3eaf4509ad5e25"
+      "sha": "5a0c971aaaffde3381cd832ed077f20734caf144"
     },
     "head": {
       "repo": {
         "fork": false
       },
-      "sha": "48515518d711aeef0f62f07b6dc86a80a6aad9f2"
+      "sha": "ea7f91a4b7ba146df5a334d74923298518f1af93"
     },
-    "number": 2
+    "number": 3
   }
 }
