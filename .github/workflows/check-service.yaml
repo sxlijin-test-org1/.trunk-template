@@ -53,6 +53,7 @@ jobs:
         env:
           GITHUB_FOO: ${{ env.GITHUB_FOO || 'qwerty' }}
           GITHUB_BAR: ${{ env.GITHUB_BAR || 'qwerty' }}
+          GITHUB_REPOSITORY: cannot-br-overridden
 
       - name: Trunk Check
         uses: trunk-io/trunk-action@sam/check-dot-trunk
