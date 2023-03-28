@@ -41,7 +41,7 @@ jobs:
           ref: ${{ fromJSON(inputs.client_payload).target.ref_sha }}
 
       - name: Trunk Check
-        uses: trunk-io/trunk-action@sam/check-dot-trunk
+        uses: trunk-io/trunk-action@main
         with:
           arguments: ${{ fromJSON(inputs.client_payload).arguments }}
           cache: ${{ fromJSON(inputs.client_payload).cache }}
