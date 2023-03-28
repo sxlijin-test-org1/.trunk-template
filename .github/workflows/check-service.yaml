@@ -16,9 +16,9 @@ on:
 #     "ref_name":  [[ ref that we received a webhook for ]],
 #     "ref_sha": [[ ref that we received a webhook for ]],
 #   },
-#   "arguments": "--trunk-annotate 0",
 #   "check_mode": "pull_request",
 #   "cache": true,
+#   "check_run_id": 1234,
 #   "token": [[ the trunk api token for the repo ]],
 #   // https://docs.github.com/webhooks-and-events/webhooks/webhook-events-and-payloads#pull_request
 #   "pull_request": [[ the pull_request field in the webhook that we receive ]],
@@ -59,6 +59,7 @@ jobs:
         with:
           arguments: ${{ fromJSON(inputs.client_payload).arguments }}
           check-mode: ${{ fromJSON(inputs.client_payload).check_mode }}
+          check-run-id: ${{ fromJSON(inputs.client_payload).check_run_id }}
           cache: ${{ fromJSON(inputs.client_payload).cache }}
           trunk-token: ${{ fromJSON(inputs.client_payload).token }}
           upload-series: ${{ fromJSON(inputs.client_payload).upload_series }}

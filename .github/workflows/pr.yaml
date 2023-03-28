@@ -1,0 +1,44 @@
+name: pr demo
+on: [pull_request]
+
+###############################################################################
+#
+# Client payload should be a JSON string that follows the following schema:
+#
+# {
+#   "version": "0.0.0",
+#   "target": {
+#     "name": [[ repo that we received a webhook for ]],
+#     "ref_name":  [[ ref that we received a webhook for ]],
+#     "ref_sha": [[ ref that we received a webhook for ]],
+#   },
+#   "check_mode": "pull_request",
+#   "cache": true,
+#   "check_run_id": 1234,
+#   "token": [[ the trunk api token for the repo ]],
+#   // https://docs.github.com/webhooks-and-events/webhooks/webhook-events-and-payloads#pull_request
+#   "pull_request": [[ the pull_request field in the webhook that we receive ]],
+#   "upload_series": "",
+# }
+#
+###############################################################################
+
+jobs:
+  hello-world:
+    name: hello world
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: dump debug info
+        shell: bash
+        run: |
+          set -x
+          env | wc -l
+          env
+          cat $GITHUB_EVENT_PATH
+
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: local-action
+        uses: ./local-action
