@@ -19,6 +19,6 @@ runs:
 
     - name: dump env
       shell: bash
-      run: ${GITHUB_ACTION_PATH}/local-action/foo.sh
+      run: ${GITHUB_ACTION_PATH}/foo.sh
       env:
         FIELD0: ${{ env.FIELD0 || github.event.pull_request.head.sha }}
