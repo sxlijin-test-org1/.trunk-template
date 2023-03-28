@@ -44,9 +44,9 @@ jobs:
         uses: trunk-io/trunk-action@sam/check-dot-trunk
         with:
           arguments: ${{ fromJSON(inputs.client_payload).arguments }}
+          cache: ${{ fromJSON(inputs.client_payload).cache }}
           check-mode: ${{ fromJSON(inputs.client_payload).check_mode }}
           check-run-id: ${{ fromJSON(inputs.client_payload).check_run_id }}
-          cache: ${{ fromJSON(inputs.client_payload).cache }}
           trunk-token: ${{ fromJSON(inputs.client_payload).token }}
           upload-series: ${{ fromJSON(inputs.client_payload).upload_series }}
         env:
