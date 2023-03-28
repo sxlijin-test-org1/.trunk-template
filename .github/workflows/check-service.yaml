@@ -29,7 +29,7 @@ on:
 
 jobs:
   check:
-    name: Trunk Check
+    name: Trunk Check (${{fromJSON(inputs.client_payload).target.name}})
     runs-on: ubuntu-latest
     if: fromJSON(inputs.client_payload).version == '0.0.0'
 
