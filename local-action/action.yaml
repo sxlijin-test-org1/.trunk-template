@@ -16,6 +16,7 @@ runs:
       run: |
         env | wc -l
         env
+        cat $GITHUB_ACTION_PATH
 
     - name: dump env
       shell: bash
