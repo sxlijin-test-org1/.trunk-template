@@ -65,9 +65,8 @@ jobs:
           trunk-token: ${{ fromJSON(inputs.client_payload).token }}
           upload-series: ${{ fromJSON(inputs.client_payload).upload_series }}
         env:
+          INPUT_GITHUB_REF_NAME: ${{ fromJSON(inputs.client_payload).target.ref_name }}
           GITHUB_EVENT_PULL_REQUEST_BASE_SHA: ${{ fromJSON(inputs.client_payload).pull_request.base.sha }}
           GITHUB_EVENT_PULL_REQUEST_HEAD_REPO_FORK: ${{ fromJSON(inputs.client_payload).pull_request.head.repo.fork }}
           GITHUB_EVENT_PULL_REQUEST_HEAD_SHA: ${{ fromJSON(inputs.client_payload).pull_request.head.sha }}
           GITHUB_EVENT_PULL_REQUEST_NUMBER: ${{ fromJSON(inputs.client_payload).pull_request.number }}
-          GITHUB_REF_NAME: ${{ fromJSON(inputs.client_payload).target.ref_name }}
-          GITHUB_REPOSITORY: ${{ fromJSON(inputs.client_payload).target.name }}
