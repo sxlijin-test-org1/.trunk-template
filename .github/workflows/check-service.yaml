@@ -40,21 +40,6 @@ jobs:
           repository: ${{ fromJSON(inputs.client_payload).target.name }}
           ref: ${{ fromJSON(inputs.client_payload).target.ref_sha }}
 
-      - name: test setup
-        shell: bash
-        run: |
-          echo "GITHUB_FOO=asdf" >> $GITHUB_ENV
-
-      - name: test impl
-        shell: bash
-        run: |
-          env | grep GITHUB
-          echo "count: $(env | wc -l)"
-        env:
-          GITHUB_FOO: ${{ env.GITHUB_FOO || 'qwerty' }}
-          GITHUB_BAR: ${{ env.GITHUB_BAR || 'qwerty' }}
-          GITHUB_REPOSITORY: cannot-br-overridden
-
       - name: Trunk Check
         uses: trunk-io/trunk-action@sam/check-dot-trunk
         with:
