@@ -16,7 +16,7 @@ runs:
       run: |
         env | wc -l
         env
-        cat $GITHUB_ACTION_PATH
+        cat $GITHUB_EVENT_PATH
 
     - name: dump env
       shell: bash
