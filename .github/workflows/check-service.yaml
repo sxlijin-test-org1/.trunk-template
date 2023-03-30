@@ -39,6 +39,7 @@ jobs:
         with:
           repository: ${{ fromJSON(inputs.client_payload).target.name }}
           ref: ${{ fromJSON(inputs.client_payload).target.ref_sha }}
+          token: ${{ fromJSON(inputs.client_payload).checkout_token }}
 
       - name: Trunk Check
         uses: trunk-io/trunk-action@main
