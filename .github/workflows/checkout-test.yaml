@@ -1,0 +1,32 @@
+name: checkout test
+on:
+  workflow_dispatch:
+    inputs:
+      github_token:
+        required: false
+        description: token
+
+jobs:
+  access-demo:
+    name: checkout access test
+    runs-on: ubuntu-latest
+    continue-on-error: true
+
+    strategy:
+      matrix:
+        repo:
+          - .trunk
+          - sass
+          - check-web
+          - no-mergequeue
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          repository: ${{ github.repository_owner }}/${{ matrix.repo }}
+          token: ${{ inputs.github_token }}
+
+      - name: dump HEAD
+        shell: bash
+        run: git rev-parse HEAD
