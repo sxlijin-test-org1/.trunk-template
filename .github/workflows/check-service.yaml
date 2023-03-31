@@ -29,7 +29,7 @@ on:
 
 jobs:
   check:
-    name: Trunk Check (${{fromJSON(inputs.client_payload).target.name}})
+    name: ${{fromJSON(inputs.client_payload).target.name}}#${{fromJSON(inputs.client_payload).pull_request.number}}
     runs-on: ubuntu-latest
     if: fromJSON(inputs.client_payload).version == '0.0.0'
 
@@ -42,7 +42,7 @@ jobs:
           token: ${{ fromJSON(inputs.client_payload).github_token }}
 
       - name: Trunk Check
-        uses: trunk-io/trunk-action@sam/finalize-failure
+        uses: trunk-io/trunk-action@sam/debug
         with:
           arguments: ${{ fromJSON(inputs.client_payload).arguments }}
           cache: ${{ fromJSON(inputs.client_payload).cache }}
