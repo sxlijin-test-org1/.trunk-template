@@ -44,7 +44,7 @@ jobs:
       - name: Trunk Check
         uses: trunk-io/trunk-action@sam/debug
         with:
-          arguments: ${{ fromJSON(inputs.client_payload).arguments }}
+          arguments: "--debug"
           cache: ${{ fromJSON(inputs.client_payload).cache }}
           check-mode: ${{ fromJSON(inputs.client_payload).check_mode }}
           check-run-id: ${{ fromJSON(inputs.client_payload).check_run_id }}
