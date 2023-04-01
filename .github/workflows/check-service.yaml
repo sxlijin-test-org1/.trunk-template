@@ -7,7 +7,7 @@ on:
 
 jobs:
   check:
-    name: ${{ fromJSON(inputs.client_payload).check_job_name }}
+    name: ${{ fromJSON(inputs.client_payload).checkJobName }}
     runs-on: ubuntu-latest
     if: fromJSON(inputs.client_payload).version == '0.0.0'
 
