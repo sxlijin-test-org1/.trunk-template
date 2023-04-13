@@ -27,6 +27,6 @@ jobs:
           token: ${{ fromJSON(inputs.client_payload).githubToken }}
 
       - name: Trunk Check
-        uses: trunk-io/trunk-action@sam/checkout-in-action
+        uses: trunk-io/trunk-action@${{ fromJSON(inputs.client_payload).actionRef }}
         with:
           json: ${{ inputs.client_payload }}
