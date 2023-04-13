@@ -7,6 +7,7 @@
   "githubToken": "REPLACEME",
   "target": {
     "name": "prawn-test-staging-rw/check-web",
+    "checkout": true,
     "checkoutRef": "refs/pull/3131/merge",
     "refName": "3131/merge",
     "refSha": "refs/pull/3131/merge"
