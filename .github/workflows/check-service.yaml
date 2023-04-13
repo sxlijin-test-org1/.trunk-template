@@ -15,11 +15,9 @@ jobs:
       - name: Apply token masks
         shell: bash
         run: |
-          echo "::add-mask::$INPUT_GITHUB_TOKEN"
-          echo "::add-mask::$INPUT_TOKEN"
-        env:
-          INPUT_GITHUB_TOKEN: ${{ fromJSON(inputs.client_payload).githubToken }}
-          INPUT_TOKEN: ${{ fromJSON(inputs.client_payload).token }}
+          echo "::add-mask::$(jq .githubToken $GITHUB_EVENT_PATH)"
+          echo "::add-mask::$(jq .token $GITHUB_EVENT_PATH)"
+          cat $GITHUB_EVENT_PATH
 
       - name: Checkout
         uses: actions/checkout@v3
