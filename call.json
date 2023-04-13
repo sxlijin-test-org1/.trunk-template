@@ -1,16 +1,17 @@
 {
   "version": "0.0.0",
-  "check_mode": "pull_request",
+  "checkMode": "pull_request",
   "cache": true,
-  "check_run_id": 12411615007,
+  "checkRunId": 12411615007,
   "token": "58e3b7b64b09c95bf5af1d1f73a2a195c9448e30",
-  "github_token": "ghs_Ei2bo5yJ3s5BYqsEEhWzhWddheIiWZ1N2Oz4",
+  "githubToken": "REPLACEME",
   "target": {
     "name": "prawn-test-staging-rw/check-web",
-    "ref_name": "pr-test-uOxx7q5",
-    "ref_sha": "614d279f29005ed6e136965c06c21cd492205ec7"
+    "checkoutRef": "refs/pull/3131/merge",
+    "refName": "3131/merge",
+    "refSha": "refs/pull/3131/merge"
   },
-  "pull_request": {
+  "pullRequest": {
     "base": {
       "repo": {
         "owner": {
@@ -24,8 +25,8 @@
       "repo": {
         "fork": false
       },
-      "sha": "614d279f29005ed6e136965c06c21cd492205ec7"
+      "sha": "c9557f2eb7b1292ff985a8c80cb9ad9ce01fa138"
     },
-    "number": 2294
+    "number": 3131
   }
 }
