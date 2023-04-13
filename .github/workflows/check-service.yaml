@@ -20,7 +20,7 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v3
-        if: !fromJSON(inputs.client_payload).target.checkout
+        if: fromJSON(inputs.client_payload).target.checkout != 'true'
         with:
           repository: ${{ fromJSON(inputs.client_payload).target.name }}
           ref: ${{ fromJSON(inputs.client_payload).target.refSha }}
