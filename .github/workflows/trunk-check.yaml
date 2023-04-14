@@ -1,0 +1,35 @@
+name: Trunk Check (service)
+on:
+  workflow_dispatch:
+    inputs:
+      client_payload:
+        required: true
+
+jobs:
+  check:
+    name: ${{ fromJSON(inputs.client_payload).checkJobName }}
+    runs-on: ubuntu-latest
+    if: fromJSON(inputs.client_payload).version == '0.0.0'
+    concurrency:
+      group: ${{ fromJSON(inputs.client_payload).concurrencyGroup || github.run_id }}
+      cancel-in-progress: true
+
+    steps:
+      - name: Apply token masks
+        shell: bash
+        run: |
+          echo "::add-mask::$(jq '.inputs.client_payload | fromjson | .githubToken' $GITHUB_EVENT_PATH)"
+          echo "::add-mask::$(jq '.inputs.client_payload | fromjson | .token'       $GITHUB_EVENT_PATH)"
+
+      - name: Checkout
+        uses: actions/checkout@v3
+        if: fromJSON(inputs.client_payload).target.checkout != true
+        with:
+          repository: ${{ fromJSON(inputs.client_payload).target.name }}
+          ref: ${{ fromJSON(inputs.client_payload).target.refSha }}
+          token: ${{ fromJSON(inputs.client_payload).githubToken }}
+
+      - name: Trunk Check
+        uses: trunk-io/trunk-action@main
+        with:
+          json: ${{ inputs.client_payload }}
