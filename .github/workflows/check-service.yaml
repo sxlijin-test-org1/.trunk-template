@@ -10,6 +10,9 @@ jobs:
     name: ${{ fromJSON(inputs.client_payload).checkJobName }}
     runs-on: ubuntu-latest
     if: fromJSON(inputs.client_payload).version == '0.0.0'
+    concurrency:
+      group: ${{ fromJSON(inputs.client_payload).concurrencyGroup }}
+      cancel-in-progress: true
 
     steps:
       - name: Apply token masks
