@@ -21,15 +21,7 @@ jobs:
           echo "::add-mask::$(jq '.inputs.client_payload | fromjson | .githubToken' $GITHUB_EVENT_PATH)"
           echo "::add-mask::$(jq '.inputs.client_payload | fromjson | .token'       $GITHUB_EVENT_PATH)"
 
-      - name: Checkout
-        uses: actions/checkout@v3
-        if: fromJSON(inputs.client_payload).target.checkout != true
-        with:
-          repository: ${{ fromJSON(inputs.client_payload).target.name }}
-          ref: ${{ fromJSON(inputs.client_payload).target.refSha }}
-          token: ${{ fromJSON(inputs.client_payload).githubToken }}
-
       - name: Trunk Check
-        uses: trunk-io/trunk-action@main
+        uses: trunk-io/trunk-action@sam/new-checkout
         with:
           json: ${{ inputs.client_payload }}
